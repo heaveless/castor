@@ -1,4 +1,5 @@
 #include "raylib.h"
+#include "raygui.h"
 
 typedef enum GameScreen
 {

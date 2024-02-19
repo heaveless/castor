@@ -1,20 +1,17 @@
 # Dependencies
 
-RAYLIB_REPO = https://github.com/raysan5/raylib.git
 RAYLIB_DIR = raylib
+RAYGUI_DIR = raygui
 
 # Configuration
 
 APP = castor
 CC = clang
-CFLAGS = -Wall -I$(RAYLIB_DIR)/src
-LDFLAGS = -L$(RAYLIB_DIR)/src -lraylib -lm -lpthread -ldl -lrt -lX11
+CFLAGS = -Wall -I$(RAYLIB_DIR)/src -I$(RAYGUI_DIR)/src
+LDFLAGS = -L$(RAYLIB_DIR)/src -fpic -DRAYGUI_IMPLEMENTATION -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 
 SOURCES = src/$(APP).c
 EXECUTABLE = $(APP)
-
-$(RAYLIB_DIR):
-	git clone $(RAYLIB_REPO) $(RAYLIB_DIR)
 
 $(RAYLIB_DIR)/src/libraylib.a: | $(RAYLIB_DIR)
 	$(MAKE) -C $(RAYLIB_DIR)/src PLATFORM=PLATFORM_DESKTOP
